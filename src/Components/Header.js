@@ -19,21 +19,26 @@ function Header() {
 
 
     },[])
+    console.log(sideBar)
+
     const openSideBar = () => {
         setSideBar(true)
+          console.log("clickesd")
+
     }
     const closeSideBar = () => {
         setSideBar(false)
+
     }
 
     return (
-        <Container>
+        <Container >
             <a href="#">
                 <img className={"header__logo"} src="/images/logo.svg" alt={"logo"}/>
             </a>
             <Menu>
                 <ul className={`header__list ${darkLink && "header__list__dark"}`}>
-                    <li className="header__links"><a href="#">Model S</a></li>
+                    <li className="header__links"><a href="https://www.tesla.com/models">Model S</a></li>
                     <li className="header__links"><a href="#">Model 3</a></li>
                     <li className="header__links"><a href="#">Model X</a></li>
                     <li className="header__links"><a href="#">Model Y</a></li>
@@ -43,16 +48,14 @@ function Header() {
                 <ul className={`header__list ${darkLink && "header__list__dark"}`}>
                     <li className="header__links"><a href="#">Shop</a></li>
                     <li className="header__links"><a href="#">Account </a></li>
-                    <li className="header__links"><a href="#" onClick={openSideBar}>Menu</a>
-                        </li>
+                    <li className="header__links"><a href="#" onClick={() => openSideBar()}>Menu</a></li>
 
 
                 </ul>
             </RightMenu>
-            { sideBar &&
-               <BurgerNav>
+           <BurgerNav show={sideBar} >
 
-                    <img onClick={closeSideBar}  src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/VisualEditor_-_Icon_-_Close_-_white.svg/1200px-VisualEditor_-_Icon_-_Close_-_white.svg.png"/>
+                    <img onClick={() => closeSideBar()}  src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/VisualEditor_-_Icon_-_Close_-_white.svg/1200px-VisualEditor_-_Icon_-_Close_-_white.svg.png"/>
                     <li><a href="#">Model S</a></li>
                     <li><a href="#">Model X</a></li>
                     <li><a href="#">Model 3</a></li>
@@ -69,10 +72,11 @@ function Header() {
                     <li><a href="#">Support</a></li>
                     <li><a href="#">shop</a></li>
                     <li><a href="#">Account</a></li>
-                    <li><a href="#">Morw</a></li>
+                    <li><a href="#">More</a></li>
 
             </BurgerNav>
-            }
+
+
 
 
 
@@ -93,6 +97,8 @@ const Container = styled.div`
   align-items: center;
   padding: 0 20px;
   z-index: 100;
+  top: 0;
+ 
 `
 const Menu = styled.div`
   @media (max-width: 676px) {
@@ -110,8 +116,8 @@ const BurgerNav = styled.div`
 
   position: fixed;
   top: 0;
-  right:0;
-  background: rgba(0,0,0,0.92);
+  right: 0;
+  background: rgba(0, 0, 0, 0.92);
   width: 300px;
   height: 100vh;
   display: flex;
@@ -121,7 +127,9 @@ const BurgerNav = styled.div`
   flex-direction: column;
   padding: 20px;
   color: white;
-  
+  transition: transform 0.25s ease-in;
+   transform: ${props => props.show ? "translateX(0)" : "translateX(100%)"};
+
 
   //padding-top: 1rem;
 
@@ -133,23 +141,26 @@ const BurgerNav = styled.div`
     //display: flex;
     //justify-content: flex-start;
     padding: 12px 0;
-    border-bottom:1px solid rgba(0,0,0,0.15);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
     transition: 0.45s;
 
   }
+
   li:hover {
-    transform: scale(1.09);
+    color:#797575 ;
 
   }
 
   img {
     width: 30px;
+    //padding: 1rem;
     position: absolute;
     right: 30px;
     top: 10px;
     cursor: pointer;
     transition: 0.4s;
   }
+
   img:hover {
     transform: scale(1.09);
   }
@@ -160,6 +171,7 @@ const BurgerNav = styled.div`
       right: 40px;
 
     }
+
     width: 180px;
 
   }

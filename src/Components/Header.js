@@ -4,6 +4,7 @@ import "./Header.css"
 
 
 function Header() {
+    const [sideBar,setSideBar] = useState(false)
 
     const [darkLink,setDarkLink] = useState(false)
 
@@ -18,7 +19,12 @@ function Header() {
 
 
     },[])
-
+    const openSideBar = () => {
+        setSideBar(true)
+    }
+    const closeSideBar = () => {
+        setSideBar(false)
+    }
 
     return (
         <Container>
@@ -37,12 +43,37 @@ function Header() {
                 <ul className={`header__list ${darkLink && "header__list__dark"}`}>
                     <li className="header__links"><a href="#">Shop</a></li>
                     <li className="header__links"><a href="#">Account </a></li>
-                    <li className="header__links"><a href="#">Menu</a>
+                    <li className="header__links"><a href="#" onClick={openSideBar}>Menu</a>
                         </li>
 
 
                 </ul>
             </RightMenu>
+            { sideBar &&
+               <BurgerNav>
+
+                    <img onClick={closeSideBar}  src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/VisualEditor_-_Icon_-_Close_-_white.svg/1200px-VisualEditor_-_Icon_-_Close_-_white.svg.png"/>
+                    <li><a href="#">Model S</a></li>
+                    <li><a href="#">Model X</a></li>
+                    <li><a href="#">Model 3</a></li>
+                    <li><a href="#">Model Y</a></li>
+                    <li><a href="#">Solar Roof</a></li>
+                    <li><a href="#">Solar Panels</a></li>
+                    <li><a href="#">Powerwall</a></li>
+                    <li><a href="#">Trade-in</a></li>
+                    <li><a href="#">Insuarance</a></li>
+                    <li><a href="#">Fleet</a></li>
+                    <li><a href="#">Charging</a></li>
+                    <li><a href="#">Carrers</a></li>
+                    <li><a href="#">Events</a></li>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">shop</a></li>
+                    <li><a href="#">Account</a></li>
+                    <li><a href="#">Morw</a></li>
+
+            </BurgerNav>
+            }
+
 
 
         </Container>
@@ -61,6 +92,7 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
+  z-index: 100;
 `
 const Menu = styled.div`
   @media (max-width: 676px) {
@@ -72,5 +104,65 @@ const RightMenu = styled.div`
   img {
     width: 20px;
   }
+
+`
+const BurgerNav = styled.div`
+
+  position: fixed;
+  top: 0;
+  right:0;
+  background: rgba(0,0,0,0.92);
+  width: 300px;
+  height: 100vh;
+  display: flex;
+  font-size: 0.9rem;
+  text-align: start;
+  overflow-y: hidden;
+  flex-direction: column;
+  padding: 20px;
+  color: white;
+  
+
+  //padding-top: 1rem;
+
+
+  font-weight: 500;
+
+  li {
+
+    //display: flex;
+    //justify-content: flex-start;
+    padding: 12px 0;
+    border-bottom:1px solid rgba(0,0,0,0.15);
+    transition: 0.45s;
+
+  }
+  li:hover {
+    transform: scale(1.09);
+
+  }
+
+  img {
+    width: 30px;
+    position: absolute;
+    right: 30px;
+    top: 10px;
+    cursor: pointer;
+    transition: 0.4s;
+  }
+  img:hover {
+    transform: scale(1.09);
+  }
+
+  @media (max-width: 676px) {
+    img {
+
+      right: 40px;
+
+    }
+    width: 180px;
+
+  }
+
 
 `

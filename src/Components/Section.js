@@ -1,23 +1,29 @@
 import React from 'react';
 import styled from "styled-components";
+import Fade from "react-reveal/Fade";
 
 function Section({model, backgroundImg, description, leftBtn, rightBtn, isArrow}) {
     return (
         <Wrap bgImage={backgroundImg}>
-            <ItemText>
-                <h1>{model}</h1>
-                <p>{description}</p>
-            </ItemText>
-            <Buttons>
-                <ButtonGroup>
-                    <LeftButton>{leftBtn}</LeftButton>
-                    {rightBtn && <RightButton>{rightBtn}</RightButton>
-                    }
+            <Fade bottom>
+                <ItemText>
+                    <h1>{model}</h1>
+                    <p>{description}</p>
+                </ItemText>
+            </Fade>
+            <Fade bottom>
+                <Buttons>
+                    <ButtonGroup>
+                        <LeftButton>{leftBtn}</LeftButton>
+                        {rightBtn && <RightButton>{rightBtn}</RightButton>
+                        }
 
-                </ButtonGroup>
-                {isArrow && <DownArrow src="/images/down-arrow.svg"/>}
+                    </ButtonGroup>
+                    {isArrow && <DownArrow src="/images/down-arrow.svg"/>}
 
-            </Buttons>
+                </Buttons>
+            </Fade>
+
 
         </Wrap>
     );
